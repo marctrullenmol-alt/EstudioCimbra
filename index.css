@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+    @apply bg-ink;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply m-0 overflow-x-clip bg-ink font-sans text-white antialiased;
+  }
+
+  ::selection {
+    @apply bg-violet-500 text-white;
+  }
+
+  :focus-visible {
+    @apply rounded outline outline-2 outline-offset-4 outline-violet-300;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.3em] text-violet-300/80;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-300 bg-clip-text text-transparent;
+  }
+
+  /* Solo transiciones de color: opacity y transform las anima GSAP y no deben competir con CSS */
+  .btn-primary {
+    @apply inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-violet-200;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/60 hover:bg-white/5;
+  }
+
+  /* En móvil el texto va sobre la escena 3D, así que lleva fondo propio */
+  .panel {
+    @apply rounded-3xl border border-white/10 bg-ink/70 p-6 backdrop-blur-md md:border-0 md:bg-transparent md:p-0 md:backdrop-blur-none;
+  }
+
+  .card {
+    @apply rounded-3xl border border-white/10 bg-white/[0.03] p-7 backdrop-blur-xl transition-colors hover:border-white/25 hover:bg-white/[0.06];
+  }
+}
